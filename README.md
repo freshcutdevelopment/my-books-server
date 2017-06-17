@@ -1,5 +1,5 @@
 # my-books-server
-Example Node.js and Express server for the my-books Aurelia sample SPA project.
+Example Node.js and Express server for the my-books Aurelia sample SPA project (companion to the book [Aurelia in Action](https://www.manning.com/books/aurelia-in-action)).
 
 ## Technologies Used
 * MongoDB
