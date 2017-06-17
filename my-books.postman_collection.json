@@ -1,0 +1,126 @@
+{
+	"variables": [],
+	"info": {
+		"name": "my-books",
+		"_postman_id": "6c3094d6-305d-4142-f2fd-9f6ae80adf3a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Welcome Route",
+			"request": {
+				"url": "http://localhost:8333/api",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Default route"
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - POST",
+			"request": {
+				"url": "http://localhost:8333/api/books",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"title\": \"The Wheel of Time\",\n    \"description\": \"This is epic.\",\n    \"rating\": 5,\n    \"status\": \"good\",\n    \"genre\": \"5945b6654389b2488cfa4d77\",\n    \"shelves\": [],\n    \"ownACopy\": true,\n    \"readDate\": \"2017-01-05\",\n    \"read\": true,\n    \"timesRead\": 3\n}"
+				},
+				"description": "Creates a new book in the MongoDB database"
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - GET",
+			"request": {
+				"url": "http://localhost:8333/api/books",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\" : \"War and Peace\"\n}"
+				},
+				"description": "Returns a list of all of the books from our mongodb database."
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - GET SINGLE",
+			"request": {
+				"url": "http://localhost:8333/api/book/5945b6654389b2488cfa4d7b",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\" : \"War and Peace\"\n}"
+				},
+				"description": "Returns a list of all of the books from our mongodb database."
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - PUT",
+			"request": {
+				"url": "http://localhost:8333/api/book/5945b6654389b2488cfa4d7b",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\" : \"Updated description\"\n}"
+				},
+				"description": "Update book meta-data"
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - DELETE",
+			"request": {
+				"url": "http://localhost:8333/api/book/593e3a8d5c957d353ce42461",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Delete a book with the specified ID."
+			},
+			"response": []
+		},
+		{
+			"name": "GENRE - GET",
+			"request": {
+				"url": "http://localhost:8333/api/genres",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Retrieve a list of genres"
+			},
+			"response": []
+		},
+		{
+			"name": "SHELF - GET",
+			"request": {
+				"url": "http://localhost:8333/api/shelves",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Retrieve a list of shelves"
+			},
+			"response": []
+		}
+	]
+}

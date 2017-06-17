@@ -1,0 +1,26 @@
+{
+  "name": "my-books-server",
+  "version": "1.0.0",
+  "description": "The simple REST API for the my-books sample application.",
+  "main": "server.js",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.4",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {
+    "node-mongo-seeds": "^2.3.1",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "database": "mongod --port 27017 --dbpath .\\database"
+  },
+  "author": "Sean Hunter",
+  "license": "ISC"
+}
