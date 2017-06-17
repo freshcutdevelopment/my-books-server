@@ -21,6 +21,6 @@ if it does not exist and starts MongoDB on the default port. The database is now
 You can initialize the simple Express.js based server by running the `npm run dev` which sets up the routes and initializes the application. The first time that the application runs the database will be populated with default books, genres, and shelves.
 
 ### Using the REST API
-You can see which REST commands are available by loading the my-books postman script:
+You can see which REST commands are available by loading the my-books [postman script](https://github.com/freshcutdevelopment/my-books-server/blob/master/my-books.postman_collection.json):
 
 ![My books server REST API screenshot](https://sean-hunter.io/wp-content/uploads/2017/06/my-books-sample-server.png "My books server REST API screenshot")
