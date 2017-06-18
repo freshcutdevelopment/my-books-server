@@ -3,17 +3,17 @@ var Schema = mongoose.Schema;
 
 var bookSchema = new Schema({
     title: String,
-    description: String,
-    rating: Number,
-    status: String,
+    description: { type: String, default: '' },
+    rating: { type: Number, default: 0 },
+    status:  { type: String, default: 'ok' },
     genre: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'genres'
     },
     shelves: [String],
-    ownACopy: Boolean,
+    ownACopy: { type: Boolean, default: false },
     readDate: Date,
-    timesRead: Number
+    timesRead: { type: Number, default: 0 }
 });
 
 module.exports = mongoose.model('books', bookSchema);

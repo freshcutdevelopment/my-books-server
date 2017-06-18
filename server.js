@@ -108,6 +108,7 @@ router.route('/shelves')
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -157,11 +158,13 @@ app.seedBooks = (genres) => {
             let book = new Book(bookJson);
 
             switch(book.title){
-                case 'War and Peace ':  book.genre = genres.find(g => g.name === 'Drama');
+                case 'War and Peace':  book.genre = genres.find(g => g.name === 'Drama');
+                break;
                 case 'Oliver' : book.genre = genres.find(g => g.name === 'Drama');
+                break;
                 case 'Charlie and the Chocolate Factory': book.genre = genres.find(g => g.name === 'Childrens');
+                break;
             }
-
             promises.push(book.save());
         });
 
