@@ -8,7 +8,7 @@ Example Node.js and Express server for the my-books Aurelia sample SPA project (
 
 ## How to Use
 
-### Set up the pre-requisits
+### Set up the prerequisites
 * Download and install [Node.js](https://nodejs.org/en/download/package-manager/)
 * Download and install [MongoDB](https://docs.mongodb.com/manual/installation/)
 * Install NPM packages `npm install`
