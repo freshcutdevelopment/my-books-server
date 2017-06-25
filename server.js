@@ -50,7 +50,16 @@ router.route('/books')
 
                 res.json(books);
             });
+
        });
+
+router.route('/booksjsonp').get( (req, res) => {
+     Book.find((err, books) =>{
+        if(err) res.send(err);
+
+        res.jsonp(books);
+    });
+});
 
 router.route('/book/:book_id')
       .get((req, res) => {
