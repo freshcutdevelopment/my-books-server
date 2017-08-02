@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Bilbo",
+        "first_name" : "Bilbo",
+        "surname" : "Baggins",
+        "admin" : false,
+        "email":"bilbo@bagend.shire",
+        "password" : "password1"
+    },
+    {
+        "name":"Frodo",
+        "first_name" : "Frodo",
+        "surname" : "Baggins",
+        "admin" : false,
+        "email":"frodo@bagend.shire",
+        "password" : "password2"
+    },
+    {   
+        "name":"Gandalf",
+        "first_name" : "Gandalf",
+        "surname" : "Olorin",
+        "admin" : true,
+        "email":"gandalf@dolguldur.io",
+        "password" : "password3"
+    },
+    {
+        "name":"Gollum",
+        "first_name" : "Gollum",
+        "surname" : "Gollum",
+        "admin" : false,
+        "email":"gollum@moria.precious",
+        "password" : "password4"
+    }
+]

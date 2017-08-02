@@ -5,9 +5,11 @@ var Book = require('./app/models/book');
 var Genre = require('./app/models/genre');
 var Shelf = require('./app/models/shelf');
 var Settings = require('./app/models/settings');
+var User = require('./app/models/user');
 var booksSeedFile = __dirname + '/seeds/books.json';
 var genresSeedFile = __dirname + '/seeds/genres.json';
 var shelvesSeedFile = __dirname + '/seeds/shelves.json';
+var usersSeedFile = __dirname + '/seeds/users.json';
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
 mongoose.promise = Promise;
@@ -19,6 +21,8 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8333;
 
 let connection = mongoose.connect('mongodb://localhost/my-books');
+
+app.set('secret', 'my-books-auth-key');
 
 //ROUTING SETUP
 //======================================
@@ -61,7 +65,72 @@ router.route('/booksjsonp').get( (req, res) => {
     });
 });
 
-router.route('/book/:book_id')
+///*********************** ///
+///User management routes ///
+///**********************///
+router.route('/users')
+       .post((req, res) =>{
+
+            let user = app.mapUserProperties(req);
+
+            user.save( (err) => {
+
+                if(err) res.send(err);
+
+                res.json(user);
+            });
+
+       })
+       .get((req, res) => {
+
+            User.find((err, users) =>{
+                if(err) res.send(err);
+
+                res.json(users);
+            });
+
+       });
+
+router.route('/users/:name')
+      .get((req, res) => {
+
+        User.findOne( { 'name': req.params.name}, (err, user) => {
+            if(err) res.send(err);
+            res.json(user);
+        });
+
+      })
+      .put( (req, res) => {
+          
+         User.findOne( { 'name': req.params.name}, (err, user) => {
+            if(err) res.send(err);
+
+            app.mapUserProperties(req, user);
+
+            user.save( (err) => {
+
+                if(err) res.send(err);
+
+                res.json(user);
+            });
+        });
+
+      })
+      .delete( (req, res) => {
+        User.remove({
+            name: req.params.name
+        }, (err, user) =>{
+
+            if(err) res.send(err);
+
+            res.json({message: 'Successfully deleted'});
+        });
+      });
+
+///*********************** ///
+///Book management routes ///
+///**********************///
+ router.route('/book/:book_id')
       .get((req, res) => {
 
         Book.findOne( { '_id': req.params.book_id}, (err, book) => {
@@ -115,6 +184,15 @@ router.route('/shelves')
             });
        });
 
+router.route('/users')
+       .get((req, res) => {
+            User.find((err, users) =>{
+                if(err) res.send(err);
+
+                res.json(users);
+            });
+       });
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -147,6 +225,7 @@ app.seedDatabase = () =>{
     let genres = app.loadFromSeedFile(genresSeedFile, Genre)
         .then(savedGenres => app.seedBooks(savedGenres))
         .then( _ => app.loadFromSeedFile(shelvesSeedFile, Shelf))
+        .then(_ =>  app.loadFromSeedFile(usersSeedFile, User))
         .then( _ => {
             console.log("successfully initialized");
             setting.save();
@@ -214,6 +293,19 @@ app.mapBookProperties = (req, book) => {
     book.status = req.body.status || book.status;
 
     return book;
+};
+
+app.mapUserProperties = (req, user) => {
+    user = user || new User();
+
+    user.name = req.body.name || user.name;
+    user.first_name = req.body.first_name || user.first_name;
+    user.surname = req.body.surname || user.surname;
+    user.admin = req.body.admin || user.admin;
+    user.email = req.body.email || user.email;
+    user.password = req.body.password || user.password;
+    
+    return user;
 };
 
 console.log('my-books server initialized. ' + port);
