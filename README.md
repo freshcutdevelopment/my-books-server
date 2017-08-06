@@ -18,7 +18,7 @@ Example Node.js and Express server for the my-books Aurelia sample SPA project (
 ### Configuration ###
 Configuration for variables such as the database and whether authentication is enabled is stored in the <code>/config.js </code> file.
 
-```
+```js
 module.exports = {
 
     'secret': 'my-books-auth-key', //token based auth key.
