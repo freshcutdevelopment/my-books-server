@@ -5,6 +5,7 @@ Example Node.js and Express server for the my-books Aurelia sample SPA project (
 * MongoDB
 * NodeJS
 * ExpressJS
+* JWT (for token based authentication). This is set up in a naive way for demo purposes only with user passwords stored in plain text in MongoDB, so shouldn't be taken directly as an example of how to do this in production.
 
 ## How to Use
 
@@ -24,3 +25,15 @@ You can initialize the simple Express.js based server by running the `npm run de
 You can see which REST commands are available by loading the my-books [postman script](https://github.com/freshcutdevelopment/my-books-server/blob/master/my-books.postman_collection.json):
 
 ![My books server REST API screenshot](https://sean-hunter.io/wp-content/uploads/2017/06/my-books-sample-server.png "My books server REST API screenshot")
+
+### Configuration ###
+Configuration for variables such as the database and whether authentication is enabled is stored in the <code>/config.js </code> file.
+
+```
+module.exports = {
+
+    'secret': 'my-books-auth-key', //token based auth key.
+    'database': 'mongodb://localhost/my-books', //MongoDB database
+    'authEnabled': false //toggle to enable or disable auth
+};
+```
