@@ -25,10 +25,15 @@ module.exports = function()
         });
     }
 
+    function getUserName(req){
+        return req.decoded._doc.name;
+    }
+
     return {
         verifyUser: verifyUser,
         getToken: getToken,
-        verifyToken : verifyToken
+        verifyToken : verifyToken,
+        getUserName : getUserName
     };
 
 }();

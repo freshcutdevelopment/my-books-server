@@ -4,6 +4,9 @@ var Shelf = require("./app/models/shelf");
 var Settings = require("./app/models/settings");
 var User = require("./app/models/user");
 var requestMapper = require('./app/request-mapper');
+var Config = require('./config.js');
+var auth = require('./app/auth.js');
+var BookUtilities = require('./app/book-utilities.js');
 
 module.exports = function(app, router) {
   ///*********************** ///
@@ -69,8 +72,10 @@ module.exports = function(app, router) {
   router
     .route("/books")
     .post((req, res) => {
+      
       let book = requestMapper.mapBookProperties(req);
-
+      if(Config.authEnabled) book.userName = auth.getUserName(req);
+      
       book.save(err => {
         if (err) res.send(err);
 
@@ -78,7 +83,10 @@ module.exports = function(app, router) {
       });
     })
     .get((req, res) => {
-      Book.find((err, books) => {
+
+      let findHash = {};
+      if(Config.authEnabled) findHash["userName"] = auth.getUserName(req);
+      Book.find(findHash, (err, books) => {
         if (err) res.send(err);
 
         res.json(books);
@@ -96,13 +104,17 @@ module.exports = function(app, router) {
   router
     .route("/book/:book_id")
     .get((req, res) => {
-      Book.findOne({ _id: req.params.book_id }, (err, book) => {
+
+      let findHash = BookUtilities.getFindHash(req);
+
+      Book.findOne(findHash, (err, book) => {
         if (err) res.send(err);
         res.json(book);
       });
     })
     .put((req, res) => {
-      Book.findById(req.params.book_id, (err, book) => {
+      let findHash = BookUtilities.getFindHash(req);
+      Book.findOne(findHash, (err, book) => {
         if (err) res.send(err);
 
         requestMapper.mapBookProperties(req, book);
@@ -115,16 +127,23 @@ module.exports = function(app, router) {
       });
     })
     .delete((req, res) => {
-      Book.remove(
-        {
-          _id: req.params.book_id
-        },
-        (err, book) => {
-          if (err) res.send(err);
+      
+      let findHash = BookUtilities.getFindHash(req);
+      Book.findOne(findHash, (err, book) => {
+        if (err) res.send(err);
+        
+        if(book){
+           Book.remove(findHash, (err, book) => {
+              if (err) res.send(err);
 
-          res.json({ message: "Successfully deleted" });
+              res.json({ message: "Successfully deleted" });
+            }
+          );
         }
-      );
+        else{
+          res.sendStatus(404); //return a 404 if we can't find a book under this user.
+        }
+      });
     });
 
   router.route("/genres").get((req, res) => {

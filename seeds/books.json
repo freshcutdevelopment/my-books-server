@@ -7,7 +7,8 @@
         "ownACopy": true, 
         "readDate" : "2017-01-01", 
         "read" : true, 
-        "timesRead": 3 
+        "timesRead": 3,
+        "userName": "Bilbo"
     },
     {  
         "title" : "Oliver", 
@@ -15,7 +16,8 @@
         "rating" : 2,  
         "status" : "ok", 
         "shelves" :["Want to read","Classics" ], 
-        "ownACopy": true
+        "ownACopy": true,
+        "userName": "Bilbo"
     },
     {  
         "title" : "Charlie and the Chocolate Factory",  
@@ -23,6 +25,37 @@
         "rating" : 5,  
         "status" : "bad", 
         "shelves" : ["For the kids"], 
-        "ownACopy": false
+        "ownACopy": false,
+        "userName": "Bilbo"
+    },
+     {  
+        "title" : "The fellowship of the Ring", 
+        "description" : "The story begins in the Shire, where the hobbit Frodo Baggins inherits the Ring from Bilbo Baggins...", 
+        "rating" : 5, 
+        "status": "good" ,
+        "shelves":["Fantasy"], 
+        "ownACopy": true, 
+        "readDate" : "2017-01-01", 
+        "read" : true, 
+        "timesRead": 3,
+        "userName": "Frodo"
+    },
+    {  
+        "title" : "The Two Towers", 
+        "description" : "Orcs sent by Saruman and Sauron kill Boromir and take Merry and Pippin. Aragorn, Gimli and Legolas debate amongst themselves which pair of hobbits to follow...", 
+        "rating" : 3,  
+        "status" : "good", 
+        "shelves" :[],
+        "ownACopy": true,
+        "userName": "Frodo"
+    },
+    {  
+        "title" : "The Return of the King",  
+        "description" : "Sauron sends a great army against Gondor. Gandalf arrives at Minas Tirith to warn Denethor of the attack, while Théoden musters the Rohirrim to ride to Gondor's aid...", 
+        "rating" : 4,  
+        "status" : "good", 
+        "shelves" : [], 
+        "ownACopy": false,
+        "userName": "Frodo"
     } 
 ]

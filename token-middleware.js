@@ -3,7 +3,6 @@ var config = require('./config');
 
 module.exports = function(router){
     router.use((req, res, next) => {
-     
         if(req.path == '/token' || req.method == 'OPTIONS'){
             next();
         } 

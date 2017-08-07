@@ -13,7 +13,8 @@ var bookSchema = new Schema({
     shelves: [String],
     ownACopy: { type: Boolean, default: false },
     readDate: Date,
-    timesRead: { type: Number, default: 0 }
+    timesRead: { type: Number, default: 0 },
+    userName: { type: String},
 });
 
 module.exports = mongoose.model('books', bookSchema);
