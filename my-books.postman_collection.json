@@ -41,7 +41,7 @@
 		{
 			"name": "BOOK - GET",
 			"request": {
-				"url": "http://localhost:8333/api/books",
+				"url": "http://localhost:8333/api/books_jsonp",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -119,6 +119,161 @@
 				"header": [],
 				"body": {},
 				"description": "Retrieve a list of shelves"
+			},
+			"response": []
+		},
+		{
+			"name": "USER - GET by name",
+			"request": {
+				"url": "http://localhost:8333/api/users/Bilbo",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Retrieve a user by email address"
+			},
+			"response": []
+		},
+		{
+			"name": "USER - GET all users",
+			"request": {
+				"url": "http://localhost:8333/api/users",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Retrieve all users"
+			},
+			"response": []
+		},
+		{
+			"name": "USER - POST",
+			"request": {
+				"url": "http://localhost:8333/api/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Legolas\",\r\n    \"first_name\" : \"Legolas\",\r\n    \"surname\" : \"Greenleaf\",\r\n    \"admin\" : false,\r\n    \"email\":\"legolas@woodland.realm\",\r\n    \"password\" : \"password7\"\r\n}"
+				},
+				"description": "Create a new user"
+			},
+			"response": []
+		},
+		{
+			"name": "USER - PUT",
+			"request": {
+				"url": "http://localhost:8333/api/users/Legolas",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Legolas\",\r\n    \"first_name\" : \"Legolas\",\r\n    \"surname\" : \"Greenleaf\",\r\n    \"admin\" : true,\r\n    \"email\":\"legolas@woodland.realm\",\r\n    \"password\" : \"password7\"\r\n}"
+				},
+				"description": "Edit a user"
+			},
+			"response": []
+		},
+		{
+			"name": "USER - DELETE",
+			"request": {
+				"url": "http://localhost:8333/api/users/Legolas",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Legolas\",\r\n    \"first_name\" : \"Legolas\",\r\n    \"surname\" : \"Greenleaf\",\r\n    \"admin\" : true,\r\n    \"email\":\"legolas@woodland.realm\",\r\n    \"password\" : \"password7\"\r\n}"
+				},
+				"description": "Delete a user"
+			},
+			"response": []
+		},
+		{
+			"name": "TOKEN",
+			"request": {
+				"url": "http://localhost:8333/api/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Bilbo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password1",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Rerieve auth token"
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - GET SINGLE (Secured)",
+			"request": {
+				"url": "http://localhost:8333/api/book/5988d27c27541410ec34e74b",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwiX2lkIjoiNTk4OGQyN2MyNzU0MTQxMGVjMzRlNzQ3Iiwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiX192IjoiaW5pdCIsInBhc3N3b3JkIjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsImFkbWluIjoiaW5pdCIsInN1cm5hbWUiOiJpbml0IiwiZmlyc3RfbmFtZSI6ImluaXQiLCJuYW1lIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwicGFzc3dvcmQiOnRydWUsImVtYWlsIjp0cnVlLCJhZG1pbiI6dHJ1ZSwic3VybmFtZSI6dHJ1ZSwiZmlyc3RfbmFtZSI6dHJ1ZSwibmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwicGF0aHNUb1Njb3BlcyI6e30sImVtaXR0ZXIiOnsiZG9tYWluIjpudWxsLCJfZXZlbnRzIjp7fSwiX2V2ZW50c0NvdW50IjowLCJfbWF4TGlzdGVuZXJzIjowfX0sImlzTmV3IjpmYWxzZSwiX2RvYyI6eyJfX3YiOjAsInBhc3N3b3JkIjoicGFzc3dvcmQxIiwiZW1haWwiOiJiaWxib0BiYWdlbmQuc2hpcmUiLCJhZG1pbiI6ZmFsc2UsInN1cm5hbWUiOiJCYWdnaW5zIiwiZmlyc3RfbmFtZSI6IkJpbGJvIiwibmFtZSI6IkJpbGJvIiwiX2lkIjoiNTk4OGQyN2MyNzU0MTQxMGVjMzRlNzQ3In0sIiRpbml0Ijp0cnVlLCJpYXQiOjE1MDIxMzkwNTQsImV4cCI6MTUwMjIyNTQ1NH0.OYKxC8nOVh0FuSCvn59AynO_Hn9oWjklUdbsncxfdLQ",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\" : \"War and Peace\"\n}"
+				},
+				"description": "Returns a list of all of the books from our mongodb database."
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK - GET (Secured)",
+			"request": {
+				"url": "http://localhost:8333/api/books",
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwiX2lkIjoiNTk4OGU0MjQwMDAxZjkxZGUwOTEzODIwIiwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiX192IjoiaW5pdCIsInBhc3N3b3JkIjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsImFkbWluIjoiaW5pdCIsInN1cm5hbWUiOiJpbml0IiwiZmlyc3RfbmFtZSI6ImluaXQiLCJuYW1lIjoiaW5pdCIsIl9pZCI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9fdiI6dHJ1ZSwicGFzc3dvcmQiOnRydWUsImVtYWlsIjp0cnVlLCJhZG1pbiI6dHJ1ZSwic3VybmFtZSI6dHJ1ZSwiZmlyc3RfbmFtZSI6dHJ1ZSwibmFtZSI6dHJ1ZSwiX2lkIjp0cnVlfSwibW9kaWZ5Ijp7fSwicmVxdWlyZSI6e319LCJzdGF0ZU5hbWVzIjpbInJlcXVpcmUiLCJtb2RpZnkiLCJpbml0IiwiZGVmYXVsdCIsImlnbm9yZSJdfSwicGF0aHNUb1Njb3BlcyI6e30sImVtaXR0ZXIiOnsiZG9tYWluIjpudWxsLCJfZXZlbnRzIjp7fSwiX2V2ZW50c0NvdW50IjowLCJfbWF4TGlzdGVuZXJzIjowfX0sImlzTmV3IjpmYWxzZSwiX2RvYyI6eyJfX3YiOjAsInBhc3N3b3JkIjoicGFzc3dvcmQxIiwiZW1haWwiOiJiaWxib0BiYWdlbmQuc2hpcmUiLCJhZG1pbiI6ZmFsc2UsInN1cm5hbWUiOiJCYWdnaW5zIiwiZmlyc3RfbmFtZSI6IkJpbGJvIiwibmFtZSI6IkJpbGJvIiwiX2lkIjoiNTk4OGU0MjQwMDAxZjkxZGUwOTEzODIwIn0sIiRpbml0Ijp0cnVlLCJpYXQiOjE1MDIxNDM3NjcsImV4cCI6MTUwMjIzMDE2N30.9GxkEdyO-PiJOQbcS-c5CRyQkTA3nwI3d8DEkG6gxuU",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\" : \"War and Peace\"\n}"
+				},
+				"description": "Returns a list of all of the books from our mongodb database."
 			},
 			"response": []
 		}
