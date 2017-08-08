@@ -1,3 +1,6 @@
+var User = require("./models/user");
+var Book = require("./models/book");
+
 module.exports = (function() {
 
   mapBookProperties = (req, book) => {
