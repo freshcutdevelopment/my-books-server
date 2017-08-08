@@ -12,6 +12,20 @@ module.exports = function(app, router) {
   ///*********************** ///
   ///User management routes ///
   ///**********************///
+
+  router.use('/users', (req, res, next) => {
+ 
+    if(Config.authEnabled && (!req.decoded || !auth.getUser(req).admin)){
+      return res.status(401).send({ 
+                    message: 'You care not authorized to manage users.'
+                });
+    } 
+    else{
+      next()
+    }
+  }, (req, res, next) =>{next()}
+  );
+
   router
     .route("/users")
     .post((req, res) => {
@@ -74,7 +88,7 @@ module.exports = function(app, router) {
     .post((req, res) => {
       
       let book = requestMapper.mapBookProperties(req);
-      if(Config.authEnabled) book.userName = auth.getUserName(req);
+      if(Config.authEnabled) book.userName = auth.getUser(req).name;
       
       book.save(err => {
         if (err) res.send(err);
@@ -85,7 +99,7 @@ module.exports = function(app, router) {
     .get((req, res) => {
 
       let findHash = {};
-      if(Config.authEnabled) findHash["userName"] = auth.getUserName(req);
+      if(Config.authEnabled) findHash["userName"] = auth.getUser(req).name;
       Book.find(findHash, (err, books) => {
         if (err) res.send(err);
 

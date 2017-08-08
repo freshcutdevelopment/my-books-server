@@ -25,15 +25,15 @@ module.exports = function()
         });
     }
 
-    function getUserName(req){
-        return req.decoded._doc.name;
+    function getUser(req){
+        return req.decoded._doc;
     }
 
     return {
         verifyUser: verifyUser,
         getToken: getToken,
         verifyToken : verifyToken,
-        getUserName : getUserName
+        getUser : getUser
     };
 
 }();

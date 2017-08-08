@@ -2,8 +2,9 @@ var auth = require('./app/auth.js');
 var config = require('./config');
 
 module.exports = function(router){
+
     router.use((req, res, next) => {
-        if(req.path == '/token' || req.method == 'OPTIONS'){
+        if(req.path == '/token'){
             next();
         } 
         else{
@@ -14,6 +15,7 @@ module.exports = function(router){
                 auth.verifyToken(bearerToken, config.secret, (tokenResult) => {
                     if (!tokenResult.success) return res.json(tokenResult);   
                     else {
+                        
                         req.decoded = tokenResult.decoded;    
                         next();
                     }
