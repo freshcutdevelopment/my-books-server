@@ -7,6 +7,7 @@ var requestMapper = require('./app/request-mapper');
 var Config = require('./config.js');
 var auth = require('./app/auth.js');
 var BookUtilities = require('./app/book-utilities.js');
+var _ = require("lodash");
 
 module.exports = function(app, router) {
   ///*********************** ///
@@ -33,14 +34,18 @@ module.exports = function(app, router) {
 
       user.save(err => {
         if (err) res.send(err);
-
+        delete user.password;
         res.json(user);
       });
     })
     .get((req, res) => {
       User.find((err, users) => {
         if (err) res.send(err);
+        _.forEach(users, u => {
+          delete u._doc.password;
+        });
 
+        console.log('users', users);
         res.json(users);
       });
     });
@@ -50,6 +55,7 @@ module.exports = function(app, router) {
     .get((req, res) => {
       User.findOne({ name: req.params.name }, (err, user) => {
         if (err) res.send(err);
+        delete user.password;
         res.json(user);
       });
     })
@@ -61,7 +67,7 @@ module.exports = function(app, router) {
 
         user.save(err => {
           if (err) res.send(err);
-
+          delete user.password;
           res.json(user);
         });
       });
@@ -73,7 +79,7 @@ module.exports = function(app, router) {
         },
         (err, user) => {
           if (err) res.send(err);
-
+          
           res.json({ message: "Successfully deleted" });
         }
       );
@@ -173,14 +179,6 @@ module.exports = function(app, router) {
       if (err) res.send(err);
 
       res.json(shelves);
-    });
-  });
-
-  router.route("/users").get((req, res) => {
-    User.find((err, users) => {
-      if (err) res.send(err);
-
-      res.json(users);
     });
   });
 };
