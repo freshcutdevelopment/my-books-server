@@ -15,6 +15,10 @@ var bookSchema = new Schema({
     readDate: Date,
     timesRead: { type: Number, default: 0 },
     userName: { type: String},
+    author: {type:String},
+    url: {type:String},
+    imageUrl: {type:String},
+    authorBioUrl: {type:String}
 });
 
 module.exports = mongoose.model('books', bookSchema);

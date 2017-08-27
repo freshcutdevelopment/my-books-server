@@ -9,20 +9,28 @@ var User = require("./app/models/user");
 var port = process.env.PORT || 8333;
 
 var dropCollection = function(model){
-    model.collection.drop();
+    return model.collection.drop();
 }
+//let connection = mongoose.connect(config.database);
 
-let connection = mongoose.connect(config.database);
+// Or using promises
+mongoose.connect(config.database).then(
+  () => { 
+        console.log("connected");
 
-console.log("connected");
+        dropCollection(Book)
+        .then(_ => dropCollection(Genre))
+        .then(_ => dropCollection(Shelf))
+        .then(_ => dropCollection(Settings))
+        .then(_ => dropCollection(User))
+        .then(_ => {
+            console.log("dropped existing collections..");
+            process.exit(0);
+        });
+        
+   },
+  err => { /** handle initial connection error */ }
+);
 
-dropCollection(Book);
-dropCollection(Genre);
-dropCollection(Shelf);
-dropCollection(Settings);
-dropCollection(User);
 
-console.log("dropped existing collections..");
-
-process.exit(0);
 

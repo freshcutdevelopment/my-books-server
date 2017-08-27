@@ -8,7 +8,11 @@
         "readDate" : "2017-01-01", 
         "read" : true, 
         "timesRead": 3,
-        "userName": "Bilbo"
+        "userName": "Bilbo",
+        "author": "Leo Tolstoy",
+        "url": "https://en.wikipedia.org/wiki/War_and_Peace",
+        "imageUrl": "/images/war-and-peace.png",
+        "authorBioUrl" : "https://en.wikipedia.org/wiki/Leo_Tolstoy"
     },
     {  
         "title" : "Oliver", 
@@ -17,7 +21,11 @@
         "status" : "ok", 
         "shelves" :["Want to read","Classics" ], 
         "ownACopy": true,
-        "userName": "Bilbo"
+        "userName": "Bilbo",
+        "author": "Charles Dickens",
+        "url": "https://en.wikipedia.org/wiki/Oliver_Twist",
+        "imageUrl": "/images/oliver.png",
+        "authorBioUrl" : "https://en.wikipedia.org/wiki/Charles_Dickens"
     },
     {  
         "title" : "Charlie and the Chocolate Factory",  
@@ -26,7 +34,11 @@
         "status" : "bad", 
         "shelves" : ["For the kids"], 
         "ownACopy": false,
-        "userName": "Bilbo"
+        "userName": "Bilbo",
+        "author": "Roald Dahl",
+        "url": "https://en.wikipedia.org/wiki/Charlie_and_the_Chocolate_Factory",
+        "imageUrl": "/images/no-cover.png",
+        "authorBioUrl" : "https://en.wikipedia.org/wiki/Roald_Dahl"
     },
      {  
         "title" : "The fellowship of the Ring", 
@@ -38,7 +50,11 @@
         "readDate" : "2017-01-01", 
         "read" : true, 
         "timesRead": 3,
-        "userName": "Frodo"
+        "userName": "Frodo",
+        "author": "J. R. R. Tolkien",
+        "url": "https://en.wikipedia.org/wiki/The_Fellowship_of_the_Ring",
+        "imageUrl": "/images/no-cover.png",
+        "authorBioUrl" : "https://en.wikipedia.org/wiki/J._R._R._Tolkien"
     },
     {  
         "title" : "The Two Towers", 
@@ -47,7 +63,11 @@
         "status" : "good", 
         "shelves" :[],
         "ownACopy": true,
-        "userName": "Frodo"
+        "userName": "Frodo",
+        "author": "J. R. R. Tolkien",
+        "url": "https://en.wikipedia.org/wiki/The_Two_Towers",
+        "imageUrl": "/images/no-cover.png",
+        "authorBioUrl" : "https://en.wikipedia.org/wiki/J._R._R._Tolkien"
     },
     {  
         "title" : "The Return of the King",  
@@ -56,6 +76,10 @@
         "status" : "good", 
         "shelves" : [], 
         "ownACopy": false,
-        "userName": "Frodo"
-    } 
+        "userName": "Frodo",
+        "author": "J. R. R. Tolkien",
+        "url": "https://en.wikipedia.org/wiki/The_Return_of_the_King",
+        "imageUrl": "/images/no-cover.png",
+        "authorBioUrl" : "https://en.wikipedia.org/wiki/J._R._R._Tolkien"
+    }
 ]
