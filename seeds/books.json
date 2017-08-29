@@ -16,7 +16,7 @@
     },
     {  
         "title" : "Oliver", 
-        "description" : "", 
+        "description" : "The story is of the orphan Oliver Twist, who is born in a workhouse and is then sold into apprenticeship with an undertaker.",
         "rating" : 2,  
         "status" : "ok", 
         "shelves" :["Want to read","Classics" ], 
@@ -29,7 +29,7 @@
     },
     {  
         "title" : "Charlie and the Chocolate Factory",  
-        "description" : "", 
+        "description" : "Charlie and the Chocolate Factory is a 1964 children's novel by British author Roald Dahl. The story features the adventures of young Charlie Bucket inside the chocolate factory of eccentric chocolatier Willy Wonka.", 
         "rating" : 5,  
         "status" : "bad", 
         "shelves" : ["For the kids"], 
