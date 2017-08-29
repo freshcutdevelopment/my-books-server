@@ -44,8 +44,6 @@ module.exports = function(app, router) {
         _.forEach(users, u => {
           delete u._doc.password;
         });
-
-        console.log('users', users);
         res.json(users);
       });
     });
@@ -108,8 +106,13 @@ module.exports = function(app, router) {
       if(Config.authEnabled) findHash["userName"] = auth.getUser(req).name;
       Book.find(findHash, (err, books) => {
         if (err) res.send(err);
+        
+        let booksWithUrls = _.map(books, book => {
+          book.imageUrl = `${req.getRoot()}${book.imageUrl}`;
+          return book;
+        });
 
-        res.json(books);
+        res.json(booksWithUrls);
       });
     });
 
@@ -129,6 +132,7 @@ module.exports = function(app, router) {
 
       Book.findOne(findHash, (err, book) => {
         if (err) res.send(err);
+        book.imageUrl = `${req.getRoot()}${book.imageUrl}`;
         res.json(book);
       });
     })

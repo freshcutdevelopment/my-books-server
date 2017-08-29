@@ -24,6 +24,13 @@ var router = express.Router();
 
 app.use(express.static("public")); //Serve static files out of the public route.
 
+ app.use(function(req, res, next) {
+    req.getRoot = function() {
+      return req.protocol + "://" + req.get('host');
+    }
+    return next();
+});
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE, OPTIONS");
