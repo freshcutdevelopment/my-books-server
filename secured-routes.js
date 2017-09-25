@@ -8,6 +8,7 @@ var Config = require('./config.js');
 var auth = require('./app/auth.js');
 var BookUtilities = require('./app/book-utilities.js');
 var _ = require("lodash");
+let countries = require('./countries.json');
 
 module.exports = function(app, router) {
   ///*********************** ///
@@ -176,6 +177,26 @@ module.exports = function(app, router) {
 
       res.json(genres);
     });
+  });
+
+  router.route("/countries").get((req,res) => {
+
+    if(req.query.code){
+      let countriesWithCode = _.filter(countries, c => {
+        return c.code == req.query.code;
+      });
+
+      res.json(countriesWithCode);
+    }
+
+    if(!req.query.name) res.json(countries);
+
+    let countriesWithName = _.filter(countries, c => {
+      return c.name.toUpperCase().indexOf(req.query.name.toUpperCase()) !== -1;
+    });
+
+    res.json(countriesWithName);
+
   });
 
   router.route("/shelves").get((req, res) => {

@@ -29,6 +29,7 @@ module.exports = (function() {
     user.admin = req.body.admin || user.admin;
     user.email = req.body.email || user.email;
     user.password = req.body.password || user.password;
+    user.country = req.body.country || user.country;
 
     return user;
   };
